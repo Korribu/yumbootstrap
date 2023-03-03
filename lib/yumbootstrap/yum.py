@@ -5,8 +5,8 @@ import os
 import shutil
 
 #import yumbootstrap.bdb as bdb
-import yumbootstrap.sh as sh
-import yumbootstrap.fs as fs
+import sh
+import fs
 
 import logging
 logger = logging.getLogger("yum")
