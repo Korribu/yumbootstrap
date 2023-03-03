@@ -49,7 +49,7 @@ cp KNOWN_ISSUES.md LICENSE README.md SUITES.md TODO \
 %defattr(-,root,root,-)
 %{_sbindir}/yumbootstrap
 %{_sysconfdir}/yumbootstrap
-#%{_mandir}/man8
+#%%{_mandir}/man8
 %{_docdir}/yumbootstrap-%{_version}
 %{python3_sitearch}/yumbootstrap
 %{python3_sitearch}/yumbootstrap-*.egg-info
