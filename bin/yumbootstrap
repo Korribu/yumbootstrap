@@ -236,7 +236,7 @@ def read_cached_suite(target):
       suite_location['suite_name'],
     )
     return suite
-  except IOError, e:
+  except IOError:
     if e.errno == errno.ENOENT:
       raise YBError("\"%s\" is not a prepared target", target, exit = 1)
     else:
