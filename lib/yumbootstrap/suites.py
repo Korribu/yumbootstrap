@@ -3,7 +3,9 @@
 import re
 import os
 import errno
-from exceptions import YBError
+#from exceptions import YBError
+
+from builtins import BaseException
 
 #-----------------------------------------------------------------------------
 
@@ -15,21 +17,21 @@ def list_suites(directory):
   except OSError:
     if e.errno == errno.ENOENT:
       return []
-    raise YBError("Can't access %s: %s", directory, e.args[1], exit = 1)
+    raise BaseException()
 
 def load_suite(directory, suite_name):
   if '/' in suite_name:
-    raise YBError('Unrecognized suite: %s', suite_name, exit = 1)
+    raise BaseException()
 
   suite_file = os.path.join(directory, suite_name + '.suite')
 
   if not os.path.isfile(suite_file):
-    raise YBError('Unrecognized suite: %s', suite_name, exit = 1)
+    raise BaseException()
 
   try:
     return Suite(suite_name, suite_file)
   except OSError:
-    raise YBError("Can't access %s: %s", directory, e.args[1], exit = 1)
+    raise BaseException()
 
 #-----------------------------------------------------------------------------
 
@@ -366,10 +368,9 @@ class Suite:
       match = section.LINE.match(line)
       if not match:
         if section_name is None:
-          raise YBError('Invalid config line %d: %s', lineno, line, exit = 1)
+          raise BaseException()
         else:
-          raise YBError('Invalid config line %d (section %s): %s',
-                        lineno, section_name, line, exit = 1)
+          raise BaseException()
 
       groups = match.groupdict()
       section.add(**groups)
