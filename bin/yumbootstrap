@@ -7,9 +7,9 @@ import errno
 import logging
 import yumbootstrap.log
 
-import yumbootstrap.yum
-import yumbootstrap.suites
-from yumbootstrap.exceptions import YBError
+import yum
+import suites
+from builtins import BaseException
 
 #-----------------------------------------------------------------------------
 
@@ -238,9 +238,9 @@ def read_cached_suite(target):
     return suite
   except IOError:
     if e.errno == errno.ENOENT:
-      raise YBError("\"%s\" is not a prepared target", target, exit = 1)
+      raise BaseException()
     else:
-      raise YBError('errno=%d: %s', e.errno, e.strerror)
+      raise BaseException()
 
 #-----------------------------------------------------------
 
