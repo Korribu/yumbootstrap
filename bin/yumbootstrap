@@ -7,8 +7,8 @@ import errno
 import logging
 import yumbootstrap.log
 
-import yum
-import suites
+import yumbootstrap.yum
+import yumbootstrap.suites
 from builtins import BaseException
 
 #-----------------------------------------------------------------------------
