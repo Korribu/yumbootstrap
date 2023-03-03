@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from exceptions import YBError
+from builtins import BaseException
 
 READ  = object() # read from
 WRITE = object() # write to
@@ -11,9 +11,9 @@ WRITE = object() # write to
 
 def check_error(cmd, code):
   if code < 0:
-    raise YBError('"%s" got signal %d', cmd, -code, exit = 1)
+    raise BaseException('"%s" got signal %d', cmd, -code, exit = 1)
   if code > 0:
-    raise YBError('"%s" exited with code %d', cmd, code, exit = 1)
+    raise BaseException('"%s" exited with code %d', cmd, code, exit = 1)
 
 #-----------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ class OutPipe:
       self.close()
       # close() probably already raised an error, but if the command did
       # exit(0), let's die
-      raise YBError('"%s" exited unexpectedly', self._cmd, exit = 1)
+      raise BaseException('"%s" exited unexpectedly', self._cmd, exit = 1)
 
   def sync(self):
     try:
@@ -43,7 +43,7 @@ class OutPipe:
       self.close()
       # close() probably already raised an error, but if the command did
       # exit(0), let's die
-      raise YBError('"%s" exited unexpectedly', self._cmd, exit = 1)
+      raise BaseException('"%s" exited unexpectedly', self._cmd, exit = 1)
 
   def close(self):
     proc = self._proc
@@ -54,7 +54,7 @@ class OutPipe:
     except IOError:
       # it would be weird if I/O error happened on close(), but it could be
       # flushing buffers or something
-      raise YBError('"%s" exited unexpectedly', self._cmd, exit = 1)
+      raise BaseException('"%s" exited unexpectedly', self._cmd, exit = 1)
 
 #-----------------------------------------------------------------------------
 
