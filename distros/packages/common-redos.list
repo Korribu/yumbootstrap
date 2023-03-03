@@ -7,23 +7,11 @@ basesystem
 rpm
 initscripts
 iproute
-
-# subset from @Base
 less
 make
 mktemp
 vim-minimal
 yum
-#authconfig
-#dhclient
-chkconfig
-# graphical boot helper (used by initscripts)
-plymouth
-# ~root/.*
-rootfiles
-
-# redhat-release
-# centos-release
 redos-release
 
 # required to fix RPM DB

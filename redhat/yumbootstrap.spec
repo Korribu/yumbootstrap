@@ -2,7 +2,8 @@
 %define _release 1
 %define _packager Stanislaw Klekot <dozzie@jarowit.net>
 
-%define python_sitearch %(%{__python3} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+%define python3_sitearch %(%{__python3} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+
 
 Summary: yumbootstrap - chroot installer for Red Hat derivatives
 Name: yumbootstrap
@@ -50,8 +51,8 @@ cp KNOWN_ISSUES.md LICENSE README.md SUITES.md TODO \
 %{_sysconfdir}/yumbootstrap
 #%{_mandir}/man8
 %{_docdir}/yumbootstrap-%{_version}
-%{python_sitearch}/yumbootstrap
-%{python_sitearch}/yumbootstrap-*.egg-info
+%{python3_sitearch}/yumbootstrap
+%{python3_sitearch}/yumbootstrap-*.egg-info
 
 
 # %changelog
