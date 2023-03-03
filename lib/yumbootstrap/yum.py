@@ -4,7 +4,7 @@ import rpm as rpm_mod
 import os
 import shutil
 
-import yumbootstrap.bdb as bdb
+#import yumbootstrap.bdb as bdb
 import yumbootstrap.sh as sh
 import yumbootstrap.fs as fs
 
@@ -169,7 +169,7 @@ class Yum:
       chroot = self.chroot, pipe = sh.WRITE,
       env = self.yum_conf.env,
     )
-    bdb.db_dump(in_pkg_db, out_command)
+    #bdb.db_dump(in_pkg_db, out_command)
     out_command.close()
     os.rename(
       os.path.join(self.chroot, tmp_pkg_db.lstrip('/')),
