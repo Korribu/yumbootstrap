@@ -286,7 +286,7 @@ def do_install(opts, suite_name, target):
               suite.name, suite.release, target)
 
   logger.info("preparing empty /etc/fstab and /etc/mtab")
-  os.umask(022)
+  os.umask(0o22)
   # prepare target directory with an empty /etc/fstab
   touch(target, 'etc/fstab', text = '# empty fstab')
   touch(target, 'etc/mtab')
@@ -424,8 +424,8 @@ try:
     o.error("unrecognized action: %s" % (opts.action,))
 except KeyboardInterrupt:
   pass
-except YBError, e:
-  print >>sys.stderr, e
+except YBError:
+  print("Error in /bin/yumbootstrap", file=sys.stderr)
   sys.exit(e.code)
 
 #-----------------------------------------------------------------------------
