@@ -11,9 +11,9 @@ WRITE = object() # write to
 
 def check_error(cmd, code):
   if code < 0:
-    raise BaseException('"%s" got signal %d', cmd, -code, exit = 1)
+    raise BaseException()
   if code > 0:
-    raise BaseException('"%s" exited with code %d', cmd, code, exit = 1)
+    raise BaseException()
 
 #-----------------------------------------------------------------------------
 
