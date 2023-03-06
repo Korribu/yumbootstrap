@@ -3,7 +3,7 @@
 import re
 import os
 import errno
-#from exceptions import YBError
+from yumbootstrap.exceptions import YBError
 
 from builtins import BaseException
 
@@ -14,24 +14,24 @@ def list_suites(directory):
     result = [fn[:-6] for fn in os.listdir(directory) if fn.endswith('.suite')]
     result.sort()
     return result
-  except OSError:
+  except OSError, e:
+  except OSError as e:
     if e.errno == errno.ENOENT:
       return []
-    raise BaseException()
+    raise YBError("Can't access %s: %s", directory, e.args[1], exit = 1)
 
 def load_suite(directory, suite_name):
   if '/' in suite_name:
-    raise BaseException()
-
+    raise YBError('Unrecognized suite: %s', suite_name, exit = 1)
   suite_file = os.path.join(directory, suite_name + '.suite')
-
   if not os.path.isfile(suite_file):
-    raise BaseException()
+    raise YBError('Unrecognized suite: %s', suite_name, exit = 1)
 
   try:
     return Suite(suite_name, suite_file)
-  except OSError:
-    raise BaseException()
+  except OSError, e:
+  except OSError as e:
+    raise YBError("Can't access %s: %s", directory, e.args[1], exit = 1)
 
 #-----------------------------------------------------------------------------
 
