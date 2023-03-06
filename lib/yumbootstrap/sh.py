@@ -31,7 +31,7 @@ class OutPipe:
   def write(self, data):
     try:
       return self._proc.stdin.write(data)
-    except IOError:
+    except IOError as e:
       self.close()
       # close() probably already raised an error, but if the command did
       # exit(0), let's die
@@ -40,7 +40,7 @@ class OutPipe:
   def sync(self):
     try:
       return self._proc.stdin.sync()
-    except IOError:
+    except IOError as e:
       self.close()
       # close() probably already raised an error, but if the command did
       # exit(0), let's die
@@ -52,7 +52,7 @@ class OutPipe:
     try:
       proc.communicate()
       check_error(self._cmd, proc.returncode)
-    except IOError:
+    except IOError as e:
       # it would be weird if I/O error happened on close(), but it could be
       # flushing buffers or something
       raise YBError('"%s" exited unexpectedly', self._cmd, exit = 1)
