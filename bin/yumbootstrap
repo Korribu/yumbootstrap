@@ -10,7 +10,7 @@ import yumbootstrap.log
 import yumbootstrap.yum
 import yumbootstrap.suites
 from builtins import BaseException
-
+from yumbootstrap.exceptions import YBError
 #-----------------------------------------------------------------------------
 
 SUITE_DIR = '/etc/yumbootstrap/suites'
