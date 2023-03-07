@@ -24,7 +24,7 @@ yum = yumbootstrap.yum.Yum(chroot = os.environ['TARGET'])
 # provided:
 #   yum.fix_rpmdb(db_load = '/usr/bin/db_load')
 #   yum.fix_rpmdb(rpm = '/bin/rpm')
-yum.fix_rpmdb()
+yum.fix_rpmdb(expected_rpmdb_dir = '/var/lib/rpm')
 
 #-----------------------------------------------------------------------------
 # vim:ft=python3
