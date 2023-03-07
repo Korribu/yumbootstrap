@@ -424,7 +424,7 @@ try:
     o.error("unrecognized action: %s" % (opts.action,))
 except KeyboardInterrupt:
   pass
-except YBError:
+except YBError as e:
   print("Error in /bin/yumbootstrap", file=sys.stderr)
   sys.exit(e.code)
 
