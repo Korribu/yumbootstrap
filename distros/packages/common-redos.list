@@ -9,7 +9,6 @@ initscripts
 iproute
 less
 make
-mktemp
 vim-minimal
 yum
 redos-release
